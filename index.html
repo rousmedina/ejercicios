@@ -17,20 +17,21 @@
 <p id="selectedBeverage"></p>
 
 <script>
+
 function displaySelected(text) {
   document.getElementById("selectedBeverage").innerHTML = "Bebida seleccionada: " + text;
 }
 
 function selectBeverage() {
 
-  let userInput = prompt("Ingrese el número de la bebida:");
+  let userInput = prompt("Ingrese la bebida que desea seleccionar:");
   let index = parseInt(userInput) - 1;
-
 
   if (!isValidSelection(index, document.querySelectorAll("#beveragesList li").length)) {
     alert("Número de bebida inválido");
     return;
   }
+
 
   displaySelected(document.querySelectorAll("#beveragesList li")[index].textContent);
 }
