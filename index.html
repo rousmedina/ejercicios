@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Seleccione una bebida:</p>
+<ol id="beveragesList">
+  <li>Naranja</li>
+  <li>Fresa</li>
+  <li>Manzana</li>
+  <li>Mango</li>
+  <li>Tamarindo</li>
+  <li>Maracuya</li>
+</ol>
+
+<button id="selectButton">Seleccionar</button>
+
+<p id="selectedBeverage"></p>
+
+<script>
+function displaySelected(text) {
+  document.getElementById("selectedBeverage").innerHTML = "Bebida seleccionada: " + text;
+}
+
+function selectBeverage() {
+
+  let userInput = prompt("Ingrese el número de la bebida:");
+  let index = parseInt(userInput) - 1;
+
+
+  if (!isValidSelection(index, document.querySelectorAll("#beveragesList li").length)) {
+    alert("Número de bebida inválido");
+    return;
+  }
+
+  displaySelected(document.querySelectorAll("#beveragesList li")[index].textContent);
+}
+
+function isValidSelection(index, length) {
+  return !isNaN(index) && index >= 0 && index < length;
+}
+
+document.getElementById("selectButton").addEventListener("click", selectBeverage);
+</script>
+
+</body>
+</html>
