@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <style>
+        body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #formulario {
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    #formulario div {
+      margin-bottom: 10px;
+    }
+
+    #formulario label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #formulario input[type="text"],
+    #formulario input[type="tel"],
+    #formulario input[type="date"],
+    #formulario input[type="email"],
+    #formulario select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    #formulario button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #formulario button:hover {
+      background-color: #45a049;
+    }
+
+    #resultado {
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <form id="formulario">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+    </div>
+    <div>
+      <label for="apellido1">Primer apellido:</label>
+      <input type="text" id="apellido1" required>
+    </div>
+    <div>
+      <label for="apellido2">Segundo apellido:</label>
+      <input type="text" id="apellido2" required>
+    </div>
+    <div>
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" pattern="[0-9]{9}"required>
+    </div>
+    <div>
+      <label for="fechaNacimiento">Fecha de nacimiento:</label>
+      <input type="date" id="fechaNacimiento" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email">
+    </div>
+    <div>
+      <label>Turno:</label>
+      <label><input type="radio" name="turno" value="mañana"> Mañana</label>
+      <label><input type="radio" name="turno" value="tarde"> Tarde</label>
+    </div>
+    <div>
+      <label for="lenguaje">Lenguaje preferido:</label>
+      <select id="lenguaje">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JavaScript</option>
+      </select>
+    </div>
+    <div>
+      <input type="checkbox" id="privacidad" required>
+      <label for="privacidad">Acepto la cláusula de privacidad</label>
+    </div>
+    <div>
+      <button type="button" onclick="enviarFormulario()">Enviar</button>
+    </div>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    function enviarFormulario() {
+      if (!document.getElementById('privacidad').checked) {
+        alert('Debe aceptar la cláusula de privacidad');
+        return;
+      }
+
+      const nombre = document.getElementById('nombre').value;
+      const apellido1 = document.getElementById('apellido1').value;
+      const apellido2 = document.getElementById('apellido2').value;
+      const telefono = document.getElementById('telefono').value;
+      const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+      const email = document.getElementById('email').value;
+      const turno = document.querySelector('input[name="turno"]:checked').value;
+      const lenguaje = document.getElementById('lenguaje').value;
+
+      const resultadoDiv = document.getElementById('resultado');
+      resultadoDiv.innerHTML = `
+        <p>Nombre: ${nombre}</p>
+        <p>Primer apellido: ${apellido1}</p>
+        <p>Segundo apellido: ${apellido2}</p>
+        <p>Teléfono: ${telefono}</p>
+        <p>Fecha de nacimiento: ${fechaNacimiento}</p>
+        <p>Email: ${email}</p>
+        <p>Turno: ${turno}</p>
+        <p>Lenguaje preferido: ${lenguaje}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
